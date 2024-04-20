@@ -57,6 +57,7 @@ const getInformacoesPessoaisRepository = (sequelize, { DataTypes}) => {
 
         return informacoesPessoais;
     }
+    return InformacoesPessoais;
 }
 
 export default getInformacoesPessoaisRepository;
