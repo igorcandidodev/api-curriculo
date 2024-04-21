@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
             ]
         });
         
-        curriculo.length > 0 ? res.send(curriculo) : res.status(404).send({status: 404, message: "Nenhum currículo encontrado"})
+        curriculo !== null ? res.send(curriculo) : res.status(404).send({status: 404, message: "Nenhum currículo encontrado"})
     } catch(err) {
         return res.status(500).send({status: 500, message: err.message});
     }
