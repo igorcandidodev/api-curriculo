@@ -4,9 +4,14 @@ const router = Router();
 
 router.get("/", async (req, res) => {
     try {
-        const curriculo = await req.context.models.Curriculo.findAll();
+        const curriculo = await req.context.models.Curriculo.findAll({
+            include: {
+                model: req.context.models.InformacoesPessoais
+            }
+        });
         
-        curriculo.length > 0 ? res.send(curriculo) : res.status(404).send({status: 404, message: "Nenhum currículo encontrado"})
+        // curriculo.length > 0 ? res.send(curriculo) : res.status(404).send({status: 404, message: "Nenhum currículo encontrado"})
+        res.send(curriculo);
     } catch(err) {
         return res.status(500).send({status: 500, message: err.message});
     }

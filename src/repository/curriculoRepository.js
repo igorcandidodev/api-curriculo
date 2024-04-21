@@ -12,17 +12,11 @@ const getCurriculoRepository = (sequelize, {DataTypes}) => {
     });
 
     Curriculo.associate = (models) => {
-        Curriculo.hasOne(models.InformacoesPessoais, {
-            foreignKey: {
-                allowNull: false,
-            }
-        });
-    }
-
-    Curriculo.associate = (models) => {
-        Curriculo.hasMany(models.ExperienciaProfissional)
-    }
-
+        Curriculo.hasOne(models.InformacoesPessoais);
+        Curriculo.hasMany(models.ExperienciaProfissional);
+        Curriculo.hasMany(models.FormacaoAcademica)
+    }  
+    
     return Curriculo;
 }
 
