@@ -1,4 +1,4 @@
-import Router from "express";
+import { Router } from "express";
 
 const router = Router();
 
@@ -29,3 +29,28 @@ router.post("/:id", async (req, res) => {
         return res.status(400).send({status: 400, message: err.message});
     }
 })
+
+router.put("/:id", async (req, res) => {
+    try {
+        const formacaoAcademica = await req.context.models.FormacaoAcademica.findByPk(req.params.id);
+        formacaoAcademica.update({
+            nome_curso: req.body.nome_curso,
+            instituicao: req.body.instituicao,
+            mes_ano_inicio: req.body.mes_ano_inicio,
+            mes_ano_conclusao: req.body.mes_ano_conclusao
+        });
+    } catch(err) {
+        return res.status(400).send({status: 400, message: err.message});
+    }
+})
+
+router.delete("/:id", async (req, res) => {
+    try {
+        const formacaoAcademica = await req.context.models.FormacaoAcademica.findByPk(req.params.id);
+        formacaoAcademica.destroy();
+    } catch (err) {
+        return res.status(404).send({status: 404, message: `ID: ${req.params.id} inexistente na nossa base de dados.`});
+    }
+})
+
+export default router;

@@ -19,14 +19,15 @@ app.use(async (req, res, next) => {
 app.use("/informacoesPessoais", routes.informacoesPessoais);
 app.use("/curriculo", routes.curriculo);
 app.use("/experienciaProfissional", routes.experienciaProfissional);
+app.use("/formacaoAcademica", routes.formacaoAcademica);
+app.use("/idioma", routes.idioma);
 
 const eraseDatabaseOnSync = process.env.ERASE_DATABASE_ON_SYNC;
 
 sequelize.sync({force: eraseDatabaseOnSync})
 
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {
-  res.send('hello world');
+  res.send('Hello World! Api Curriculo');
 })
 
 app.listen(port, () => {

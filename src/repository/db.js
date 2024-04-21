@@ -4,6 +4,8 @@ import getInformacoesPessoaisRepository from './informacoesPessoaisRepository';
 import getCurriculoRepository from './curriculoRepository';
 import getExperienciaProfissional from './experienciaProfissionalRepository';
 import getFormacaoAcademica from './formacaoAcademicaRepository';
+import getIdiomas from './idiomaRepository';
+import getFerramentas from './ferramentaRepository';
 
 const name = process.env.DB_NAME;
 const user = process.env.DB_USER;
@@ -20,6 +22,8 @@ const models = {
     Curriculo: getCurriculoRepository(sequelize, Sequelize),
     ExperienciaProfissional: getExperienciaProfissional(sequelize, Sequelize),
     FormacaoAcademica: getFormacaoAcademica(sequelize, Sequelize),
+    Idioma: getIdiomas(sequelize, Sequelize),
+    Ferramenta: getFerramentas(sequelize, Sequelize),
 };
 
 Object.keys(models).forEach((key) => {

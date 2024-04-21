@@ -1,5 +1,5 @@
 const getFormacaoAcademica = (sequelize, {DataTypes}) => {
-    const FormacaoAcademica = sequelize.define("formacoes_academica", {
+    const FormacaoAcademica = sequelize.define("formacoes_academicas", {
         nome_curso: {
             type: DataTypes.STRING,
         },
