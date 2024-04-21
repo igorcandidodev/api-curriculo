@@ -20,6 +20,7 @@ app.use("/informacoesPessoais", routes.informacoesPessoais);
 app.use("/curriculo", routes.curriculo);
 app.use("/experienciaProfissional", routes.experienciaProfissional);
 app.use("/formacaoAcademica", routes.formacaoAcademica);
+app.use("/ferramenta", routes.ferramenta);
 app.use("/idioma", routes.idioma);
 
 const eraseDatabaseOnSync = process.env.ERASE_DATABASE_ON_SYNC;

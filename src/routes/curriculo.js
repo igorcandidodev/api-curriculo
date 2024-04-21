@@ -21,6 +21,26 @@ router.get("/", async (req, res) => {
     
 }) 
 
+router.get("/:id", async (req, res) => {
+    try {
+        const curriculo = await req.context.models.Curriculo.findOne({
+            where: {id: req.params.id},
+            include: [
+                req.context.models.InformacoesPessoais,
+                req.context.models.ExperienciaProfissional,
+                req.context.models.Ferramenta,
+                req.context.models.FormacaoAcademica,
+                req.context.models.Idioma
+            ]
+        });
+        
+        curriculo.length > 0 ? res.send(curriculo) : res.status(404).send({status: 404, message: "Nenhum currículo encontrado"})
+    } catch(err) {
+        return res.status(500).send({status: 500, message: err.message});
+    }
+    
+}) 
+
 router.post("/", async (req, res) => {
     try {
         const curriculo = await req.context.models.Curriculo.create();
