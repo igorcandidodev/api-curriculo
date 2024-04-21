@@ -1,5 +1,5 @@
 const getCurriculoRepository = (sequelize, {DataTypes}) => {
-    const Curriculo = sequelize.define("curriculo", {
+    const Curriculo = sequelize.define("curriculos", {
         username: {
             type: DataTypes.STRING,
             unique: true,
@@ -19,6 +19,9 @@ const getCurriculoRepository = (sequelize, {DataTypes}) => {
         });
     }
 
+    Curriculo.associate = (models) => {
+        Curriculo.hasMany(models.ExperienciaProfissional)
+    }
 
     return Curriculo;
 }

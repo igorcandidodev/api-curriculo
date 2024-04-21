@@ -16,8 +16,9 @@ app.use(async (req, res, next) => {
   next();
 })
 
-app.use("/informacoesPessoais", routes.informacoesPessoais)
-app.use("/curriculo", routes.curriculo)
+app.use("/informacoesPessoais", routes.informacoesPessoais);
+app.use("/curriculo", routes.curriculo);
+app.use("/experienciaProfissional", routes.experienciaProfissional);
 
 const eraseDatabaseOnSync = process.env.ERASE_DATABASE_ON_SYNC;
 
