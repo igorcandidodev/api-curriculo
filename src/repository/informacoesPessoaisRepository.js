@@ -50,6 +50,10 @@ const getInformacoesPessoaisRepository = (sequelize, { DataTypes}) => {
         }
     });
 
+    InformacoesPessoais.associate = (models) => {
+        InformacoesPessoais.belongsTo(models.Curriculo);
+    }
+
     InformacoesPessoais.findByEmail = async (user) => {
         let informacoesPessoais =  await InformacoesPessoais.findOne({
             where:  {email: user},

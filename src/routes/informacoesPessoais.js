@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     
 })
 
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
     try {
         const informacoesPessoais = await req.context.models.InformacoesPessoais.create({
             email: req.body.email,
@@ -21,7 +21,8 @@ router.post("/", async (req, res) => {
             cargo: req.body.cargo,
             cidade: req.body.cidade,
             estado: req.body.estado,
-            pais: req.body.pais
+            pais: req.body.pais,
+            curriculoId: req.params.id
         });
     
         return res.send(informacoesPessoais);

@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 import getInformacoesPessoaisRepository from './informacoesPessoaisRepository';
+import getCurriculoRepository from './curriculoRepository';
 
 const name = process.env.DB_NAME;
 const user = process.env.DB_USER;
@@ -14,7 +15,14 @@ const sequelize = new Sequelize(name, user, password, {
 
 const models = {
     InformacoesPessoais: getInformacoesPessoaisRepository(sequelize, Sequelize),
+    Curriculo: getCurriculoRepository(sequelize, Sequelize),
 };
+
+Object.keys(models).forEach((key) => {
+    if ("associate" in models[key]) {
+      models[key].associate(models);
+    }
+  });
 
 export default models;
 export { sequelize }
