@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.post("/:id", async (req, res) => {
     try {
-        const formacaoAcademica = req.context.models.FormacaoAcademica.create({
+        const formacaoAcademica = await req.context.models.FormacaoAcademica.create({
             nome_curso: req.body.nome_curso,
             instituicao: req.body.instituicao,
             mes_ano_inicio: req.body.mes_ano_inicio,
@@ -39,6 +39,8 @@ router.put("/:id", async (req, res) => {
             mes_ano_inicio: req.body.mes_ano_inicio,
             mes_ano_conclusao: req.body.mes_ano_conclusao
         });
+
+        return res.send(formacaoAcademica)
     } catch(err) {
         return res.status(400).send({status: 400, message: err.message});
     }
@@ -48,6 +50,8 @@ router.delete("/:id", async (req, res) => {
     try {
         const formacaoAcademica = await req.context.models.FormacaoAcademica.findByPk(req.params.id);
         formacaoAcademica.destroy();
+
+        res.sendStatus(204);
     } catch (err) {
         return res.status(404).send({status: 404, message: `ID: ${req.params.id} inexistente na nossa base de dados.`});
     }

@@ -4,7 +4,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
     try {
-        const ferramenta = req.context.models.Ferramenta.findAll();
+        const ferramenta = await req.context.models.Ferramenta.findAll();
 
         ferramenta.length > 0? res.send(ferramenta) : res.status(404).send({ status: 404, message: 'Não foi encontrado nenhum dado' });
 
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 router.post("/:id", async (req, res) => {
     try {
-        const ferramenta = req.context.models.ferramenta.create({
+        const ferramenta = await req.context.models.ferramenta.create({
             nome: req.body.nome,
             curriculoId: req.params.id
         });
